@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>Giphy Browser</h1>
       <Input placeholder='Search for a gif' />
       <Button>Search</Button>
       <Button>
