@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const searchGiphy = async (searchTerm, offset = 0, limit = 10) => {
   try {
-    const { data } = await axios.get(`https://api.giphy.com/v1/gifs/search?q=${searchTerm}`, {
+    const { data: response } = await axios.get(`https://api.giphy.com/v1/gifs/search?q=${searchTerm}`, {
       params: {
         api_key: process.env.REACT_APP_GIPHY_API_KEY,
         offset,
@@ -10,7 +10,7 @@ export const searchGiphy = async (searchTerm, offset = 0, limit = 10) => {
       }
     });
 
-    return data.data;
+    return response.data;
   } catch (error) {
     console.log(error);
     return [];
@@ -19,7 +19,7 @@ export const searchGiphy = async (searchTerm, offset = 0, limit = 10) => {
 
 export const searchTrendingGiphy = async (offset = 0, limit = 10) => {
   try {
-    const { data } = await axios.get(`https://api.giphy.com/v1/gifs/trending`, {
+    const { data: response } = await axios.get(`https://api.giphy.com/v1/gifs/trending`, {
       params: {
         api_key: process.env.REACT_APP_GIPHY_API_KEY,
         offset,
@@ -28,7 +28,7 @@ export const searchTrendingGiphy = async (offset = 0, limit = 10) => {
       }
     });
 
-    return data.data;
+    return response.data;
   } catch (error) {
     console.log(error);
     return [];
