@@ -17,6 +17,7 @@ export const CardImage = styled.img`
   min-height: 100%;
   object-fit: contain;
   vertical-align: bottom;
+  background: rgba(0,0,0, .15);
 `;
 
 export const CardInfo = styled.div`

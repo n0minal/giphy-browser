@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const searchGiphy = async (searchTerm, offset = 0, limit = 10) => {
+export const searchGiphy = async (searchTerm, offset = 0, limit = 100) => {
   try {
     const { data: response } = await axios.get(`https://api.giphy.com/v1/gifs/search?q=${searchTerm}`, {
       params: {
@@ -17,7 +17,7 @@ export const searchGiphy = async (searchTerm, offset = 0, limit = 10) => {
   }
 }
 
-export const searchTrendingGiphy = async (offset = 0, limit = 10) => {
+export const searchTrendingGiphy = async (offset = 0, limit = 100) => {
   try {
     const { data: response } = await axios.get(`https://api.giphy.com/v1/gifs/trending`, {
       params: {
