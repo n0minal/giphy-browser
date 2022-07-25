@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { searchGiphy, searchTrendingGiphy } from '../api/giphy';
-import useFavorites from '../hooks/useFavorites';
-import Card from '../components/Card';
-import Header from '../components/Header';
+import { searchGiphy, searchTrendingGiphy } from '../../api/giphy';
+import useFavorites from '../../hooks/useFavorites';
+import Card from '../../components/Card';
+import Header from '../../components/Header';
+import { ContentContainer } from './styles';
+import SearchBox from '../../components/SearchBox';
+import NavLink from '../../components/NavLink';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,12 +19,15 @@ const HomePage = () => {
   const searchTrendingGifs = async () => {
     const trendingGifs = await searchTrendingGiphy();
     setGifs(trendingGifs);
-    console.log(trendingGifs);
   }
 
   const handleSearch = async () => {
-    const result = await searchGiphy(searchTerm);
-    setGifs(result);
+    if (searchTerm) {
+      const result = await searchGiphy(searchTerm);
+      setGifs(result);
+    } else {
+      searchTrendingGifs();
+    }
   }
 
   const handleSearchChange = async (value) => {
@@ -42,10 +48,13 @@ const HomePage = () => {
 
   return (
     <>
-      <Header handleSearch={handleSearch} handleSearchChange={handleSearchChange} />
-      <div className="body">
+      <Header>
+        <SearchBox handleSearch={handleSearch} handleSearchChange={handleSearchChange} />
+        <NavLink to="/my-saved-gifs">My Saved Gifs</NavLink>
+      </Header>
+      <ContentContainer>
         { gifs.map(gif => (<Card isFavorite={isFavorite(gif)} gif={gif} key={gif.id} toggleFavorite={toggleFavorite}/>)) }
-      </div>
+      </ContentContainer>
     </>
   );
 }
