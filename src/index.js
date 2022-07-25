@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app';
-import Router from './router';
+import { FavoritesProvider } from './providers/favorites';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App>
-      <Router />
-    </App>
+    <FavoritesProvider>
+      <App />
+    </FavoritesProvider>
   </React.StrictMode>
 );
