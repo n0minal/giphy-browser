@@ -1,4 +1,4 @@
-import GiphyCard from '../components/GiphyCard';
+import Card from '../components/Card';
 import { Link } from 'react-router-dom';
 import useFavorites from '../hooks/useFavorites';
 
@@ -14,7 +14,7 @@ const MySavedGifsPage = () => {
       <h1>My Saved Gifs</h1>
       </div>
       <div className="body">
-        {favorites.map(gif => (<GiphyCard gif={gif} key={gif.id}/>))}
+        {favorites.map(gif => (<Card gif={gif} key={gif.id}/>))}
       </div>
     </>
   );

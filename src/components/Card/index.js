@@ -2,7 +2,7 @@ import "./styles.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const GiphyCard = ({ gif, isFavorite, toggleFavorite }) => {
+const Card = ({ gif, isFavorite, toggleFavorite }) => {
   return (
     <div className="card">
       <img src={gif.images.fixed_height.url} alt=""/>
@@ -18,4 +18,4 @@ const GiphyCard = ({ gif, isFavorite, toggleFavorite }) => {
   );
 }
 
-export default GiphyCard;
+export default Card;
