@@ -1,18 +1,22 @@
 import GiphyCard from '../components/GiphyCard';
-import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import useFavorites from '../hooks/useFavorites';
 
 const MySavedGifsPage = () => {
+  const { favorites } = useFavorites();
+
   return (
-    <div>
-      <Button>
+    <>
+      <div className="header">
+      <button>
         <Link to="/">Go Back</Link>
-      </Button>
+      </button>
       <h1>My Saved Gifs</h1>
-      <GiphyCard/>
-      <GiphyCard/>
-      <GiphyCard/>
-    </div>
+      </div>
+      <div className="body">
+        {favorites.map(gif => (<GiphyCard gif={gif} key={gif.id}/>))}
+      </div>
+    </>
   );
 }
 

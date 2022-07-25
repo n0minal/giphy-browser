@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { searchGiphy, searchTrendingGiphy } from '../api/giphy';
 import useFavorites from '../hooks/useFavorites';
+import GiphyCard from '../components/GiphyCard';
 
 const HomePage = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [gifs, setGifs] = useState([]);
 
-  //TODO: add logic to display a heart icon if the gif is in the favorites list
   const { favorites, setFavorites } = useFavorites();
 
   useEffect(() => {
@@ -19,6 +18,7 @@ const HomePage = () => {
   const searchTrendingGifs = async () => {
     const trendingGifs = await searchTrendingGiphy();
     setGifs(trendingGifs);
+    console.log(trendingGifs);
   }
 
   const handleSearch = async () => {
@@ -26,18 +26,31 @@ const HomePage = () => {
     setGifs(result);
   }
 
+  const toggleFavorite = (gif) => {
+    if (isFavorite(gif)) {
+      setFavorites(state => state.filter(favorite => gif.id !== favorite.id));
+    } else {
+      console.log(`Adding gif ${gif.id} to favorites`);
+      setFavorites(state => [...state, gif]);
+    }
+  }
+
+  const isFavorite = (gif) => {
+    return favorites.find(favorite => favorite.id === gif.id);
+  }
+
   return (
     <>
-      <div>
-        <h1>Giphy Browser</h1>
-        <Input placeholder='Search for a gif' onChange={e => setSearchTerm(e.target.value)}/>
-        <Button variant="contained" onClick={handleSearch}>Search</Button>
-        <Button variant="text">
+      <div className="header">
+        <h1 className="logo">Giphy Browser</h1>
+        <input placeholder='Search for a gif' onChange={e => setSearchTerm(e.target.value)}/>
+        <button onClick={handleSearch}>Search</button>
+        <button variant="text">
           <Link to="/my-saved-gifs">My Saved Gifs</Link>
-        </Button>
+        </button>
       </div>
-      <div>
-        {gifs.map(gif => ( <img src={gif.images.downsized_large.url} alt={gif.title} /> ))}
+      <div className="body">
+        { gifs.map(gif => (<GiphyCard isFavorite={isFavorite(gif)} gif={gif} key={gif.id} toggleFavorite={toggleFavorite}/>)) }
       </div>
     </>
   );

@@ -1,0 +1,55 @@
+.card {
+  flex-grow: 1;
+  margin: 10px;
+
+  img {
+    max-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+
+  .info {
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
+    background: rgba(30, 30, 30, 10);
+
+    .favorite-button {
+      background: transparent;
+      border: none;
+      font-size: 1.2em;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .filled-heart {
+        color: red;
+
+        &:hover {
+          color: #ccc;
+        }
+      }
+
+      .empty-heart {
+        color: #ccc;
+
+        &:hover {
+          color: rgba(255, 30, 30, 150);
+        }
+      }
+    }
+
+
+    span {
+      display: block;
+      font-size: 0.8em;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+
+}
