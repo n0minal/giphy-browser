@@ -2,27 +2,34 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.div`
   flex-grow: 1;
+  background: #fafafa;
   margin: 10px;
-  background: white;
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  height: 250px;
+  padding: 10px;
+  margin-bottom: 50px;
 `;
 
 export const CardImage = styled.img`
-  min-width: 100%;
-  max-height: 100%;
+  max-width: 100%;
+  min-height: 100%;
   object-fit: contain;
   vertical-align: bottom;
 `;
 
 export const CardInfo = styled.div`
   display: flex;
-  padding: 10px;
   justify-content: space-between;
-  background: #333;
+  background: #fafafa;
   align-items: center;
+  padding: 10px;
+  margin: 10px -10px 0 -10px;
 `;
 
 export const CardInfoText = styled.span`
-  color: white;
+  color: black;
   font-size: 12px;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
@@ -31,7 +38,7 @@ export const CardInfoText = styled.span`
 export const FavoriteButton = styled.button`
   background: none;
   border: none;
-  color: white;
+  color: black;
   font-size: 16px;
 
   &:hover {
