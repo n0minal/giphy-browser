@@ -1,20 +1,23 @@
-import { Link } from "react-router-dom";
-import "./styles.scss";
+import { HeaderContainer, Logo, LogoContainer, NavbarContainer, NavLink, SearchBox, SearchBoxContainer, SearchButton } from "./styles";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({ handleSearch, handleSearchChange }) => {
   return (
-    <div className="header">
-      <div className="header-info">
-        <h1 className="logo">Giphy Search</h1>
-      </div>
-      <div className="header-content">
-        <div className="search-box">
-          <input placeholder='Search for a gif' onChange={e => handleSearchChange(e.target.value)}/>
-          <button onClick={handleSearch}>Search</button>
-        </div>
-        <Link to="/my-saved-gifs"className="nav-button">My Saved Gifs</Link>
-      </div>
-    </div>
+    <HeaderContainer>
+      <LogoContainer>
+        <Logo>Giphy Search</Logo>
+      </LogoContainer>
+      <NavbarContainer>
+        <SearchBoxContainer>
+          <SearchBox placeholder='Search for a gif' onChange={e => handleSearchChange(e.target.value)} />
+          <SearchButton onClick={handleSearch}>
+            <FontAwesomeIcon icon={faSearch} />
+          </SearchButton>
+        </SearchBoxContainer>
+        <NavLink to="/my-saved-gifs">My Saved Gifs</NavLink>
+      </NavbarContainer>
+    </HeaderContainer>
   );
 }
 

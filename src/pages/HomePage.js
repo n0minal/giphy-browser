@@ -7,7 +7,6 @@ import Header from '../components/Header';
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [gifs, setGifs] = useState([]);
-
   const { favorites, setFavorites } = useFavorites();
 
   useEffect(() => {
@@ -31,10 +30,8 @@ const HomePage = () => {
 
   const toggleFavorite = (gif) => {
     if (isFavorite(gif)) {
-      console.log(`Removing gif ${gif.id} to favorites`);
       setFavorites(state => state.filter(favorite => gif.id !== favorite.id));
     } else {
-      console.log(`Adding gif ${gif.id} to favorites`);
       setFavorites(state => [...state, gif]);
     }
   }
