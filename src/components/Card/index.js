@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { CardContainer, CardImage, CardInfo, CardInfoText, FavoriteButton } from "./styles";
 
-const Card = ({ gif, isFavorite, toggleFavorite }) => {
+const Card = ({ gif, isFavorite, toggleFavorite, handleUnfavorite }) => {
   return (
     <CardContainer>
       <CardImage src={gif.images.fixed_height.url} alt="" />
@@ -13,6 +13,13 @@ const Card = ({ gif, isFavorite, toggleFavorite }) => {
               <FontAwesomeIcon icon={faHeart} className={isFavorite ? 'filled' : 'empty'} />
             </FavoriteButton>
           )}
+          {
+            handleUnfavorite && (
+              <FavoriteButton onClick={() => handleUnfavorite(gif)}>
+                <FontAwesomeIcon icon={faTrash} />
+              </FavoriteButton>
+            )
+          }
       </CardInfo>
     </CardContainer>
   );

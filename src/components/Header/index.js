@@ -1,10 +1,10 @@
 import { HeaderContainer, Logo, LogoContainer, NavbarContainer } from "./styles";
 
-const Header = ({ children }) => {
+const Header = ({ title, children }) => {
   return (
     <HeaderContainer>
       <LogoContainer>
-        <Logo>Giphy Search</Logo>
+        <Logo>{ title || 'Giphy Search' }</Logo>
       </LogoContainer>
       <NavbarContainer>
         {children}

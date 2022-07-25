@@ -5,15 +5,19 @@ import NavLink from '../../components/NavLink';
 import Header from '../../components/Header';
 
 const MySavedGifsPage = () => {
-  const { favorites } = useFavorites();
+  const { favorites, setFavorites } = useFavorites();
+
+  const handleUnfavorite = async (gif) => {
+    setFavorites(state => state.filter(favorite => gif.id !== favorite.id));
+  }
 
   return (
     <>
-      <Header>
+      <Header title="My Saved Gifs">
         <NavLink to="/">Go Back</NavLink>
       </Header>
       <ContentContainer>
-        {favorites.map(gif => (<Card gif={gif} key={gif.id}/>))}
+        {favorites.map(gif => (<Card gif={gif} key={gif.id} handleUnfavorite={handleUnfavorite}/>))}
       </ContentContainer>
     </>
   );
